@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Odin Browser Form</title>
   <link rel="stylesheet" href="style.css">
-  <script src="index.js"></script>
+  <script src="index.js" defer></script>
 </head>
 <body>
   <form>
     <div class="form-field">
       <label>
-        Email :
-        <input type="email" name="email">
+        Email *:
+        <input type="email" name="email" required>
       </label>
     </div>
 
     <div class="form-field">
       <label>
-        Country :
+        Country *:
         <select name="country">
           <option value="us">United State</option>
           <option value="jp">Japan</option>
@@ -30,22 +30,22 @@
 
     <div class="form-field">
       <label>
-        ZIP-code :
-        <input type="text" name="zip-code">
+        ZIP-code *:
+        <input type="text" name="zip-code" required>
       </label>
     </div>
 
     <div class="form-field">
       <label>
-        Password :
-        <input type="text" name="password">
+        Password *:
+        <input type="text" name="password" required>
       </label>
     </div>
 
     <div class="form-field">
       <label>
-        Confirm password :
-        <input type="text" name="confirm-password">
+        Confirm password *:
+        <input type="text" name="confirm-password" required>
       </label>
     </div>
 
