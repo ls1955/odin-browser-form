@@ -4,7 +4,15 @@ const passwordInput = document.querySelector('input[name="password"]');
 const confirmPasswordInput = document.querySelector(
   'input[name="confirm-password"]'
 );
+const inputs = [emailInput, passwordInput, confirmPasswordInput];
+
 const submitBtn = document.querySelector("button");
+
+// Suppose the input is already invalid, it is probably not nice seeing
+// the input staying red (when input become valid) until user move to next input.
+inputs.forEach((input) =>
+  input.addEventListener("input", () => input.setCustomValidity(""))
+);
 
 emailInput.addEventListener("change", () => validateEmail());
 passwordInput.addEventListener("change", () => validatePassword());
@@ -18,7 +26,7 @@ submitBtn.addEventListener("click", (e) => {
   validatePassword();
   validateConfirmPassword();
 
-  for (const input of [emailInput, ZIPInput, passwordInput, confirmPasswordInput]) {
+  for (const input of inputs) {
     if (!input.reportValidity()) return;
   }
 
