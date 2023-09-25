@@ -1,10 +1,11 @@
 const emailInput = document.querySelector('input[name="email"]');
-const ZIPInput = document.querySelector('input[name="zip-code"]');
+const countryInput = document.querySelector('select[name="country"]');
+const zipCodeInput = document.querySelector('input[name="zip-code"]');
 const passwordInput = document.querySelector('input[name="password"]');
 const confirmPasswordInput = document.querySelector(
   'input[name="confirm-password"]'
 );
-const inputs = [emailInput, passwordInput, confirmPasswordInput];
+const inputs = [emailInput, zipCodeInput, passwordInput, confirmPasswordInput];
 
 const submitBtn = document.querySelector("button");
 
@@ -15,6 +16,7 @@ inputs.forEach((input) =>
 );
 
 emailInput.addEventListener("change", () => validateEmail());
+zipCodeInput.addEventListener("change", () => validateZipCode());
 passwordInput.addEventListener("change", () => validatePassword());
 confirmPasswordInput.addEventListener("change", () =>
   validateConfirmPassword()
@@ -23,6 +25,7 @@ submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
   validateEmail();
+  validateZipCode();
   validatePassword();
   validateConfirmPassword();
 
@@ -40,6 +43,28 @@ function validateEmail() {
     emailInput.setCustomValidity("Incorrect email format. Ex: john@odin.com");
   } else {
     emailInput.setCustomValidity("");
+  }
+}
+
+const zipCodeRegexps = {
+  us: /^\d{5}$|^\d{5}-\d{4}$/,
+  jp: /^\d{3}-?\d{4}$/,
+  my: /^\d{5}$/,
+  uk: /^[A-Z]{1,2}[0-9R][0-9A-Z]?●[0-9][ABD-HJLNP-UW-Z]{2}$/,
+};
+
+const zipCodeErrMsgs = {
+  us: "Invalid US zipcode. Ex: 01234 / 01234-5678",
+  jp: "Invalid Japan zipcode. Ex: 123-4567 / 1234567",
+  my: "Invalid Malaysia zipcode. Ex: 81000",
+  uk: "Seems like United Kingdom zipcode is invalid. I have no idea how should it looks like either.",
+};
+
+function validateZipCode() {
+  if (!zipCodeRegexps[countryInput.value].test(zipCodeInput.value)) {
+    zipCodeInput.setCustomValidity(zipCodeErrMsgs[countryInput.value]);
+  } else {
+    zipCodeInput.setCustomValidity("");
   }
 }
 
