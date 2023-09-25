@@ -6,9 +6,57 @@ const confirmPasswordInput = document.querySelector(
 );
 const submitBtn = document.querySelector("button");
 
+emailInput.addEventListener("change", () => validateEmail());
+passwordInput.addEventListener("change", () => validatePassword());
+confirmPasswordInput.addEventListener("change", () =>
+  validateConfirmPassword()
+);
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  validateEmail();
+  validatePassword();
+  validateConfirmPassword();
+
+  for (const input of [emailInput, ZIPInput, passwordInput, confirmPasswordInput]) {
+    if (!input.reportValidity()) return;
+  }
+
+  console.log("Successful submitted the form");
+});
+
+function validateEmail() {
+  if (emailInput.value === "") {
+    emailInput.setCustomValidity("Please include email. Ex: john@odin.com");
+  } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailInput.value)) {
+    emailInput.setCustomValidity("Incorrect email format. Ex: john@odin.com");
+  } else {
+    emailInput.setCustomValidity("");
+  }
+}
+
+function validatePassword() {
+  if (passwordInput.value === "") {
+    passwordInput.setCustomValidity(
+      "Please fill out the password (minimum length: 4)"
+    );
+  } else {
+    passwordInput.setCustomValidity("");
+  }
+}
+
+function validateConfirmPassword() {
+  if (confirmPasswordInput.value === "") {
+    confirmPasswordInput.setCustomValidity("Please repeat the above password.");
+  } else if (passwordInput.value !== confirmPasswordInput.value) {
+    confirmPasswordInput.setCustomValidity(
+      "Please ensure both password are identical"
+    );
+  } else {
+    confirmPasswordInput.setCustomValidity("");
+  }
+}
+
 // DIRECTIONS:
-// * Perhaps remove required attribute (since we will work on :valid, :invalid pseudo classes later)
-// * For every input, include a "change" event as firing the validation everytime user
-//   click something is probably making their life harder than they need to be
 // * Include some style
 // * When the form is successfully submit, do something with the page
