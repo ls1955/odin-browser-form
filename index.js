@@ -44,7 +44,7 @@ function validateEmail() {
 }
 
 function validatePassword() {
-  if (passwordInput.value === "") {
+  if (passwordInput.value.length < 4) {
     passwordInput.setCustomValidity(
       "Please fill out the password (minimum length: 4)"
     );
