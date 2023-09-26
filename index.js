@@ -1,4 +1,4 @@
-const form = document.querySelector("form")
+const form = document.querySelector("form");
 const emailInput = document.querySelector('input[name="email"]');
 const countryInput = document.querySelector('select[name="country"]');
 const zipCodeInput = document.querySelector('input[name="zip-code"]');
@@ -34,8 +34,8 @@ submitBtn.addEventListener("click", (e) => {
     if (!input.reportValidity()) return;
   }
 
-  window.alert("Thanks for filling the form");
-  form.clear();
+  window.alert("Thanks for filling up the form");
+  form.reset();
 });
 
 function validateEmail() {
@@ -91,7 +91,3 @@ function validateConfirmPassword() {
     confirmPasswordInput.setCustomValidity("");
   }
 }
-
-// DIRECTIONS:
-// * Include some style
-// * When the form is successfully submit, do something with the page
