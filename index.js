@@ -1,3 +1,4 @@
+const form = document.querySelector("form")
 const emailInput = document.querySelector('input[name="email"]');
 const countryInput = document.querySelector('select[name="country"]');
 const zipCodeInput = document.querySelector('input[name="zip-code"]');
@@ -33,7 +34,8 @@ submitBtn.addEventListener("click", (e) => {
     if (!input.reportValidity()) return;
   }
 
-  console.log("Successful submitted the form");
+  window.alert("Thanks for filling the form");
+  form.clear();
 });
 
 function validateEmail() {
