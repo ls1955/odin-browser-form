@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    border: 1px solid;
+    padding: 20px 30px;
+}
+
+.form-field {
+    padding: 10px 0;
+}
+
+input:invalid {
+    background-color: red;
+}
